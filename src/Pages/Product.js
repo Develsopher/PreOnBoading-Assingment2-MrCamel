@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import addRecent from '../utils/functions/addRecent';
+import addRecent from 'utils/functions/addRecent';
 
 class Product extends Component {
   render() {

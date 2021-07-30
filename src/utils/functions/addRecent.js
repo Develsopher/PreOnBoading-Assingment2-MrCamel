@@ -1,4 +1,4 @@
-import deleteRecents from './deleteRecent';
+import deleteRecents from 'utils/functions/deleteRecent';
 
 const addRecent = recent => {
   if (!window.localStorage.getItem('recents')) {
