@@ -5,5 +5,5 @@ class Product extends Component {
     return;
   }
 }
-
+ 
 export default Product;
