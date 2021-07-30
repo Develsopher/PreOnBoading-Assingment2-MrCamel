@@ -3,9 +3,10 @@ import styled from 'styled-components/macro';
 
 export default class BrandButton extends Component {
   render() {
+    const { brand } = this.props;
     return (
       <Container>
-        <Title>Gucci</Title>
+        <Title>{brand}</Title>
       </Container>
     );
   }
