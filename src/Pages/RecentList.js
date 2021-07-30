@@ -1,9 +1,9 @@
 import { Component } from 'react';
 
-class RecentList extends Component {
+class recentList extends Component {
   render() {
     return;
   }
 }
 
-export default RecentList;
+export default recentList;

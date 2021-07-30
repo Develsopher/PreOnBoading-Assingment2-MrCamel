@@ -1,16 +1,32 @@
 import React from 'react';
 import { Component } from 'react';
-<<<<<<< HEAD
-import addRecent from 'utils/functions/addRecent';
-=======
 import styled from 'styled-components';
-import Header from '../components/Header';
-import Content from '../components/Content';
-import BlackButton from '../components/button/BlackButton';
-import BlueButton from '../components/button/BlueButton';
->>>>>>> da61b5f (Add: product page layout)
+import Header from 'components/Header';
+import Content from 'components/Content';
+import BlackButton from 'components/button/BlackButton';
+import BlueButton from 'components/button/BlueButton';
+import axios from 'axios';
 
-class Product extends Component {
+class product extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get('/data/ProductData.json')
+      .then(res => {
+        this.setState({ products: res.data.product_lists });
+        console.log(this.state.products);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   render() {
     return (
       <Container>
@@ -25,7 +41,7 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default product;
 
 const Container = styled.div`
   display: flex;
