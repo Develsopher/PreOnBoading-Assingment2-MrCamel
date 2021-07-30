@@ -1,3 +1,5 @@
+import updateRecent from './updateRecent';
+
 const addRecent = recent => {
   if (!window.localStorage.getItem('recents')) {
     window.localStorage.setItem('recents', JSON.stringify([].concat(recent)));
@@ -6,9 +8,11 @@ const addRecent = recent => {
   }
   const recents = JSON.parse(window.localStorage.getItem('recents'));
 
-  //   if (recents.includes(v => v.id === recent.id)) {
-  //     updateRecent(new Date());
-  //   }
+  const existedRecent = recents.find(v => v.id === recent.id);
+
+  if (existedRecent) {
+    updateRecent(existedRecent);
+  }
 
   recents.push(recent);
   window.localStorage.setItem('recents', JSON.stringify(recents));
