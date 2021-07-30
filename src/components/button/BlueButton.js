@@ -5,7 +5,7 @@ export default class BlueButton extends Component {
   render() {
     return (
       <Container>
-        <Title>다른 상품 보기</Title>
+        <Title>{this.props.children}</Title>
       </Container>
     );
   }

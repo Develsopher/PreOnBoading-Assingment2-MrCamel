@@ -10,8 +10,8 @@ export default class Content extends Component {
           <img src="/images/gucci.png" alt="상품이미지" />
         </Image>
         <TitleGroup>
-          <BrandButton />
-          <Title> 중고 구찌 래빗홀 가방</Title>
+          <BrandButton>Gucci</BrandButton>
+          <Title>중고 구찌 래빗홀 가방</Title>
         </TitleGroup>
         <Price>
           <span>300,000</span>원
