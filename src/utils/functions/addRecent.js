@@ -1,20 +1,38 @@
-import updateRecent from './updateRecent';
-
 const addRecent = recent => {
   if (!window.localStorage.getItem('recents')) {
-    window.localStorage.setItem('recents', JSON.stringify([].concat(recent)));
+    window.localStorage.setItem(
+      'recents',
+      JSON.stringify(
+        [].concat({ id: 0, productId: recent.id, inquiriedAt: new Date() })
+      )
+    );
 
     return;
   }
+
   const recents = JSON.parse(window.localStorage.getItem('recents'));
 
-  const existedRecent = recents.find(v => v.id === recent.id);
-
+  const existedRecent = recents.find(v => v.productId === recent.id);
   if (existedRecent) {
-    updateRecent(existedRecent);
+    console.log('enter');
+    recents.splice(existedRecent.id, 1, {
+      ...existedRecent,
+      inquiriedAt: new Date(),
+    });
+
+    window.localStorage.setItem('recents', JSON.stringify(recents));
+
+    return;
   }
 
-  recents.push(recent);
+  const lastId = recents.length;
+
+  recents.push({
+    ...recent,
+    productId: recent.id,
+    id: lastId,
+    inquiriedAt: new Date(),
+  });
   window.localStorage.setItem('recents', JSON.stringify(recents));
 
   return;
