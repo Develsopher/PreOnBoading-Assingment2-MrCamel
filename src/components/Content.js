@@ -2,16 +2,18 @@ import { Component } from 'react';
 import styled from 'styled-components/macro';
 import BrandButton from './button/BrandButton';
 
-export default class Content extends Component {
+class Content extends Component {
   render() {
     const { nowProduct } = this.props;
+    console.log('content', this.props.nowProduct);
+    console.log('???');
     return (
       <Container>
         <Image>
           <img src={nowProduct.image} alt="상품이미지" />
         </Image>
         <TitleGroup>
-          <BrandButton brand={nowProduct.brand} />
+          <BrandButton>{nowProduct.brand}</BrandButton>
           <Title>{nowProduct.title}</Title>
         </TitleGroup>
         <Price>
@@ -21,6 +23,8 @@ export default class Content extends Component {
     );
   }
 }
+
+export default Content;
 
 const Container = styled.div`
   padding: 30px 20px;

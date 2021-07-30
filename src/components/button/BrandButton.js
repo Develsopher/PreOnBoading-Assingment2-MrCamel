@@ -3,14 +3,9 @@ import styled from 'styled-components/macro';
 
 export default class BrandButton extends Component {
   render() {
-    const { brand } = this.props;
     return (
       <Container>
-<<<<<<< HEAD
-        <Title>{brand}</Title>
-=======
         <Title>{this.props.children}</Title>
->>>>>>> 5668f042c4e655a6a55ed9a5bc6ec46184497ba1
       </Container>
     );
   }

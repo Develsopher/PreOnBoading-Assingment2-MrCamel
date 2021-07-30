@@ -35,18 +35,17 @@ class product extends Component {
         console.error(err);
       });
 
-    addRecent(this.state.products);
+    // addRecent(this.state.products);
   }
 
   render() {
     const { nowProduct } = this.state;
     console.log(this.state.nowProduct);
+    // console.log(this.state.nowProduct.image);
     return (
       <Container>
-        <Header />
-        <Content nowProduct={nowProduct} />
         <Header link="/recentlist">최근 본 상품</Header>
-        <Content />
+        <Content nowProduct={nowProduct} />
         <Group>
           <BlackButton>관심없어요</BlackButton>
           <BlueButton>다른 상품 보기</BlueButton>
