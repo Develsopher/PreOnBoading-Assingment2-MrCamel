@@ -4,18 +4,17 @@ import BrandButton from './button/BrandButton';
 
 export default class Content extends Component {
   render() {
-    const { image, title, price } = this.props.products.product_lists;
     return (
       <Container>
         <Image>
-          <img src={image} alt="상품이미지" />
+          <img src="/images/gucci.png" alt="상품이미지" />
         </Image>
         <TitleGroup>
-          <BrandButton />
-          <Title>{title}</Title>
+          <BrandButton>Gucci</BrandButton>
+          <Title>중고 구찌 래빗홀 가방</Title>
         </TitleGroup>
         <Price>
-          <span>{price}</span>원
+          <span>300,000</span>원
         </Price>
       </Container>
     );

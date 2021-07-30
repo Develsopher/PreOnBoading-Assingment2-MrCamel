@@ -6,12 +6,16 @@ export default class Header extends Component {
   render() {
     return (
       <Container>
-        <Logo>
+        <Logo to="/">
           <img src="/images/미스터카멜.png" alt="logo" />
         </Logo>
-        <LinkButton to="/recentlist">
-          <img src="/images/refresh.svg" alt="icon" />
-          <span>최근 본 상품</span>
+        <LinkButton to={this.props.link}>
+          {this.props.children === '상품 보러 가기' ? (
+            <img src="/images/shopping-cart.svg" alt="icon" />
+          ) : (
+            <img src="/images/refresh.svg" alt="icon" />
+          )}
+          <span>{this.props.children}</span>
         </LinkButton>
       </Container>
     );
@@ -35,11 +39,18 @@ const Logo = styled(Link)`
 const LinkButton = styled(Link)`
   display: flex;
   align-items: center;
+  padding: 5px 10px;
+  border-radius: 5px;
   font-size: 18px;
   font-weight: 500;
   color: #2c2c31;
 
   img {
     margin-right: 10px;
+    width: 26px;
+  }
+
+  &:hover {
+    background-color: #eff0ff;
   }
 `;
