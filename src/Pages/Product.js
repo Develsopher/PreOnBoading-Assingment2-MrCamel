@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+<<<<<<< HEAD
 import styled from 'styled-components';
 import Header from 'components/Header';
 import Content from 'components/Content';
@@ -26,6 +27,14 @@ class product extends Component {
         console.error(err);
       });
   }
+=======
+import addRecent from 'utils/functions/addRecent';
+import styled from 'styled-components';
+import Header from '../components/Header';
+import Content from '../components/Content';
+import BlackButton from '../components/button/BlackButton';
+import BlueButton from '../components/button/BlueButton';
+>>>>>>> e6b382f (Fix)
 
   render() {
     return (
