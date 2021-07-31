@@ -15,14 +15,6 @@ class recentList extends Component {
   }
 
   componentDidMount() {
-    // axios
-    //   .get('/data/ProductData.json')
-    //   .then(res => {
-    //     this.setState({ products: res.data.product_lists });
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
     this.setState({ productLists: readRecent() });
   }
 
@@ -33,7 +25,6 @@ class recentList extends Component {
   };
 
   render() {
-    console.log('jee', this.state.productLists);
     const { productLists, isCheck } = this.state;
     return (
       <Container>
@@ -57,7 +48,13 @@ class recentList extends Component {
           </Select>
         </Group>
         <Line />
-        <ItemList productLists={productLists} />
+        {isCheck ? (
+          <ItemList
+            productLists={productLists.filter(v => v.product.disLike === false)}
+          />
+        ) : (
+          <ItemList productLists={productLists} />
+        )}
       </Container>
     );
   }
