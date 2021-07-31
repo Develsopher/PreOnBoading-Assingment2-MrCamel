@@ -3,8 +3,10 @@ import styled from 'styled-components/macro';
 
 export default class BlackButton extends Component {
   render() {
+    const { randomPick, products } = this.props;
+
     return (
-      <Container>
+      <Container onClick={() => randomPick(products)}>
         <img src="/images/sad.svg" alt="" />
         <Title>{this.props.children}</Title>
       </Container>
