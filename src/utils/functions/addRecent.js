@@ -21,7 +21,6 @@ const addRecent = recent => {
 
   const existedRecent = recents.find(v => v.product.id === recent.id);
   if (existedRecent) {
-    console.log(`${existedRecent.id}번 중복 발생!!`);
     updateRecent(existedRecent);
     return;
   }

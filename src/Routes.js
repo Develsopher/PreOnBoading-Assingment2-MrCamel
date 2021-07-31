@@ -9,6 +9,7 @@ function Routes() {
       <Switch>
         <Route exact path="/" component={product} />
         <Route exact path="/recentlist" component={recentList} />
+        <Route exact path="/product/:id" component={product} />
       </Switch>
     </BrowserRouter>
   );

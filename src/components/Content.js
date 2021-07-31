@@ -8,7 +8,7 @@ class Content extends Component {
     return (
       <Container>
         <Image>
-          <img src={product?.image} alt="상품이미지" />
+          <img src={`/${product.image}`} alt="상품이미지" />
         </Image>
         <TitleGroup>
           <BrandButton>{product?.brand}</BrandButton>

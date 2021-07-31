@@ -56,6 +56,16 @@ class product extends Component {
     axios
       .get('/data/ProductData.json')
       .then(res => {
+        if (this.props.match.params.id) {
+          this.setState({
+            product: res.data.product_lists.find(
+              v => v.id === parseInt(this.props.match.params.id)
+            ),
+          });
+          this.setState({ products: res.data.product_lists });
+
+          return;
+        }
         this.pickRandomProduct(res.data.product_lists);
         this.setState({ products: res.data.product_lists });
       })
@@ -66,6 +76,7 @@ class product extends Component {
 
   render() {
     const { product, products } = this.state;
+
     return (
       <Container>
         <Header link="/recentlist">내가 본 상품 </Header>
