@@ -16,7 +16,7 @@ const addRecent = recent => {
 
   const existedRecent = recents.find(v => v.productId === recent.id);
   if (existedRecent) {
-    console.log('enter');
+    console.log(`${existedRecent.id}번 중복 발생!!`);
     recents.splice(existedRecent.id, 1, {
       ...existedRecent,
       inquiriedAt: new Date(),
@@ -30,9 +30,8 @@ const addRecent = recent => {
   const lastId = recents.length;
 
   recents.push({
-    ...recent,
-    productId: recent.id,
     id: lastId,
+    productId: recent.id,
     inquiriedAt: new Date(),
   });
   window.localStorage.setItem('recents', JSON.stringify(recents));

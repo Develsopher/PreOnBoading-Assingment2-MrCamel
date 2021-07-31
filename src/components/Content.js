@@ -4,20 +4,18 @@ import BrandButton from './button/BrandButton';
 
 class Content extends Component {
   render() {
-    const { nowProduct } = this.props;
-    console.log('content', this.props.nowProduct);
-    console.log('???');
+    const { product } = this.props;
     return (
       <Container>
         <Image>
-          <img src={nowProduct.image} alt="상품이미지" />
+          <img src={product?.image} alt="상품이미지" />
         </Image>
         <TitleGroup>
-          <BrandButton>{nowProduct.brand}</BrandButton>
-          <Title>{nowProduct.title}</Title>
+          <BrandButton>{product?.brand}</BrandButton>
+          <Title>{product?.title}</Title>
         </TitleGroup>
         <Price>
-          <span>{(nowProduct.price * 1).toLocaleString('en')}</span>원
+          <span>{(product?.price * 1).toLocaleString('en')}</span>원
         </Price>
       </Container>
     );

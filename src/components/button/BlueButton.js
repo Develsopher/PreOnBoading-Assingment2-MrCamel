@@ -3,8 +3,10 @@ import styled from 'styled-components/macro';
 
 export default class BlueButton extends Component {
   render() {
+    const { pickRandomProduct, products } = this.props;
+
     return (
-      <Container>
+      <Container onClick={() => pickRandomProduct(products)}>
         <Title>{this.props.children}</Title>
       </Container>
     );
