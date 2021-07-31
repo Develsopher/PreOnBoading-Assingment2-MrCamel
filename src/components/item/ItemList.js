@@ -14,7 +14,6 @@ export default class ItemList extends Component {
       disLike: false,
     };
   }
-  componentDidUpdate() {}
 
   render() {
     const { productList, isCheck } = this.props;
@@ -26,7 +25,7 @@ export default class ItemList extends Component {
               ? productList
                   .filter(v => v.product.disLike === false)
                   .map(v => (
-                    <Item key={v.product.id}>
+                    <Item to={`/product/${v.product.id}`} key={v.product.id}>
                       <Image src={v.product.image} alt="상품이미지" />
                       <Information>
                         <Group>
@@ -45,25 +44,28 @@ export default class ItemList extends Component {
                       </Information>
                     </Item>
                   ))
-              : productList.map(v => (
-                  <Item key={v.product.id}>
-                    <Image src={v.product.image} alt="상품이미지" />
-                    <Information>
-                      <Group>
-                        <BrandButton>{v.product.brand}</BrandButton>
-                        {v.product.disLike ? (
-                          <UnLikeButton>관심 없어요</UnLikeButton>
-                        ) : (
-                          <LikeButton>관심 있어요</LikeButton>
-                        )}
-                      </Group>
-                      <Title>{v.product.title}</Title>
-                      <Price>
-                        <span>{(v.product.price * 1).toLocaleString()}</span>원
-                      </Price>
-                    </Information>
-                  </Item>
-                ))}
+              : productList.map(v => {
+                  return (
+                    <Item to={`/product/${v.product.id}`} key={v.product.id}>
+                      <Image src={v.product.image} alt="상품이미지" />
+                      <Information>
+                        <Group>
+                          <BrandButton>{v.product.brand}</BrandButton>
+                          {v.product.disLike ? (
+                            <UnLikeButton>관심 없어요</UnLikeButton>
+                          ) : (
+                            <LikeButton>관심 있어요</LikeButton>
+                          )}
+                        </Group>
+                        <Title>{v.product.title}</Title>
+                        <Price>
+                          <span>{(v.product.price * 1).toLocaleString()}</span>
+                          원
+                        </Price>
+                      </Information>
+                    </Item>
+                  );
+                })}
           </>
         ) : (
           <Null>최근 본 상품이 없습니다.</Null>
