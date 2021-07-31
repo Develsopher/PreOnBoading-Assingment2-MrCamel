@@ -37,9 +37,11 @@ class recentList extends Component {
   }
 
   handleCheck = () => {
-    this.setState(prev => ({
-      isCheck: !prev.isCheck,
-    }));
+    this.setState(prev => {
+      return {
+        isCheck: !prev.isCheck,
+      };
+    });
   };
 
   handleSelect = e => {
@@ -73,7 +75,7 @@ class recentList extends Component {
         <Header link="/">상품 보러 가기</Header>
         <BrandFilter onFilter={this.onFilter} productList={productList} />
         <Group>
-          <Check onClick={() => handleCheck()}>
+          <Check onClick={handleCheck}>
             <img
               src={
                 isCheck === true ? '/images/checked.svg' : '/images/uncheck.svg'
@@ -91,22 +93,15 @@ class recentList extends Component {
           </Select>
         </Group>
         <Line />
-        {/* <ItemList
-          productList={
-            searchedBrandList.length ? searchedBrandList : productList
-          }
-        /> */}
-        {isCheck ? (
+
+        {
           <ItemList
-            productList={productList.filter(v => v.product.disLike === false)}
-          />
-        ) : (
-          <ItemList
+            isCheck={isCheck}
             productList={
               searchedBrandList.length ? searchedBrandList : productList
             }
           />
-        )}
+        }
       </Container>
     );
   }

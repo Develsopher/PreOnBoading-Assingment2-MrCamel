@@ -15,30 +15,55 @@ export default class ItemList extends Component {
   componentDidUpdate() {}
 
   render() {
-    const { productList } = this.props;
+    const { productList, isCheck } = this.props;
     console.log(productList);
     return (
       <Container>
         {productList ? (
-          productList.map(v => (
-            <Item key={v.product.id}>
-              <Image src={v.product.image} alt="상품이미지" />
-              <Information>
-                <Group>
-                  <BrandButton>{v.product.brand}</BrandButton>
-                  {v.product.disLike ? (
-                    <BlackButton>관심 없어요</BlackButton>
-                  ) : (
-                    <BlueButton>관심 있어요</BlueButton>
-                  )}
-                </Group>
-                <Title>{v.product.title}</Title>
-                <Price>
-                  <span>{(v.product.price * 1).toLocaleString()}</span>원
-                </Price>
-              </Information>
-            </Item>
-          ))
+          <>
+            {isCheck
+              ? productList
+                  .filter(v => v.product.disLike === false)
+                  .map(v => (
+                    <Item key={v.product.id}>
+                      <Image src={v.product.image} alt="상품이미지" />
+                      <Information>
+                        <Group>
+                          <BrandButton>{v.product.brand}</BrandButton>
+                          {v.product.disLike ? (
+                            <BlackButton>관심 없어요</BlackButton>
+                          ) : (
+                            <BlueButton>관심 있어요</BlueButton>
+                          )}
+                        </Group>
+                        <Title>{v.product.title}</Title>
+                        <Price>
+                          <span>{(v.product.price * 1).toLocaleString()}</span>
+                          원
+                        </Price>
+                      </Information>
+                    </Item>
+                  ))
+              : productList.map(v => (
+                  <Item key={v.product.id}>
+                    <Image src={v.product.image} alt="상품이미지" />
+                    <Information>
+                      <Group>
+                        <BrandButton>{v.product.brand}</BrandButton>
+                        {v.product.disLike ? (
+                          <BlackButton>관심 없어요</BlackButton>
+                        ) : (
+                          <BlueButton>관심 있어요</BlueButton>
+                        )}
+                      </Group>
+                      <Title>{v.product.title}</Title>
+                      <Price>
+                        <span>{(v.product.price * 1).toLocaleString()}</span>원
+                      </Price>
+                    </Information>
+                  </Item>
+                ))}
+          </>
         ) : (
           <Null>최근 본 상품이 없습니다.</Null>
         )}

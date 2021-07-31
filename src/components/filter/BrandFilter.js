@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import styled from 'styled-components/macro';
-import BrandButton from '../button/BrandButton';
 
 export default class BrandFilter extends Component {
   constructor(props) {
@@ -33,7 +32,8 @@ export default class BrandFilter extends Component {
           <>
             {data.checked ? (
               <TitleWrap
-                color="red"
+                color="white"
+                backgroundColor="#46464d"
                 key={data.name}
                 onClick={() => this.onCheck(data, idx)}
               >
@@ -42,6 +42,7 @@ export default class BrandFilter extends Component {
             ) : (
               <TitleWrap
                 color="#46464d"
+                backgroundColor="white"
                 key={data.name}
                 onClick={() => this.onCheck(data, idx)}
               >
@@ -73,7 +74,7 @@ const TitleWrap = styled.button`
   align-items: center;
   margin-right: 10px;
   padding: 10px 20px;
-  background-color: white;
+  background-color: ${props => props.backgroundColor};
   border-radius: 50px;
   border: 1px solid #e9ebed;
   color: ${props => props.color};
