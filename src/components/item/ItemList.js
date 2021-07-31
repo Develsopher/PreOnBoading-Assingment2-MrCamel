@@ -2,8 +2,6 @@ import { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BrandButton from 'components/button/BrandButton';
-import BlackButton from 'components/button/BlackButton';
-import BlueButton from 'components/button/BlueButton';
 import LikeButton from 'components/button/LikeButton';
 import UnLikeButton from 'components/button/UnLikeButton';
 
@@ -17,6 +15,13 @@ export default class ItemList extends Component {
 
   render() {
     const { productList, isCheck } = this.props;
+
+    console.log(productList);
+
+    if (!productList[0]?.product.id) {
+      return <Null>찾으려는 상품이 존재하지 않습니다.</Null>;
+    }
+
     return (
       <Container>
         {productList ? (

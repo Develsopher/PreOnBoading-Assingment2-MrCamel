@@ -18,36 +18,30 @@ class recentList extends Component {
 
   onFilter = data => {
     if (!data.checked) {
-      this.setState(prev => ({
-        searchedBrandList: prev.searchedBrandList.concat(
-          prev.productList.filter(v => v.product.brand === data.name)
-        ),
-      }));
+      this.setState(prev => {
+        return {
+          searchedBrandList: prev.searchedBrandList.concat(
+            prev.productList.filter(v => v.product.brand === data.name).length
+              ? prev.productList.filter(v => v.product.brand === data.name)
+              : [{ product: { brand: data.name } }]
+          ),
+        };
+      });
     } else {
-      this.setState(prev => ({
-        searchedBrandList: prev.searchedBrandList.filter(
-          v => v.product.brand !== data.name
-        ),
-      }));
+      this.setState(prev => {
+        return {
+          searchedBrandList: prev.searchedBrandList.filter(v => {
+            console.log(v.product.brand);
+            console.log(data.name);
+            return v.product.brand !== data.name;
+          }),
+        };
+      });
     }
-  };
-
-  componentDidMount() {
-    this.setState({ productList: readRecent() });
-  }
-
-  handleCheck = () => {
-    this.setState(prev => {
-      return {
-        isCheck: !prev.isCheck,
-      };
-    });
   };
 
   handleSelect = e => {
     this.setState({ activeTab: e.target.value });
-
-    console.log(this.state.activeTab);
   };
 
   sort = func => {
@@ -58,6 +52,18 @@ class recentList extends Component {
       };
     });
   };
+
+  handleCheck = () => {
+    this.setState(prev => {
+      return {
+        isCheck: !prev.isCheck,
+      };
+    });
+  };
+
+  componentDidMount() {
+    this.setState({ productList: readRecent() });
+  }
 
   componentDidUpdate(_, prevState) {
     if (prevState.activeTab !== this.state.activeTab) {
@@ -78,6 +84,8 @@ class recentList extends Component {
   render() {
     const { productList, isCheck, searchedBrandList } = this.state;
     const { handleCheck, handleSelect } = this;
+
+    console.log(searchedBrandList);
 
     return (
       <Container>
