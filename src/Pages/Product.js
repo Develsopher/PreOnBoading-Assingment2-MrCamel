@@ -49,6 +49,7 @@ class product extends Component {
 
   render() {
     const { product, products } = this.state;
+    console.log(this.state.product.disLike);
     return (
       <Container>
         <Header link="/recentlist">내가 본 상품</Header>
@@ -59,13 +60,13 @@ class product extends Component {
             pickRandomProduct={this.pickRandomProduct}
             onDislike={this.onDislike}
           >
-            관심없어요
+            관심 없어요
           </BlackButton>
           <BlueButton
             products={products.filter(v => v.id !== product.id)}
             pickRandomProduct={this.pickRandomProduct}
           >
-            랜덤상품보기
+            랜덤 상품 보기
           </BlueButton>
         </Group>
       </Container>

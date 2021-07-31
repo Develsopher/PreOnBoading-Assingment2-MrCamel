@@ -3,11 +3,28 @@ import styled from 'styled-components/macro';
 import BrandButton from '../button/BrandButton';
 
 export default class BrandFilter extends Component {
+  constructor() {
+    super();
+    this.state = {
+      checkedBrand: [],
+      allBrand: [],
+    };
+  }
+
+  // handleSellect = (e) => {
+  //   if () {
+  //     this.setState({selectedBrand: [...selectedBrand, e.target.value]})
+  //   }
+
+  //   //클릭한 브랜드들을 selectedBrand에 넣는다.
+  // }
   render() {
     return (
-      <Container>
+      <Container onChange={this.handleChange}>
         {BRAND_NAME.map((data, index) => (
-          <BrandButton key={index}>{data.name}</BrandButton>
+          <TitleWrap key={index} value={data.name}>
+            <Title>{data.name}</Title>
+          </TitleWrap>
         ))}
       </Container>
     );
@@ -25,6 +42,22 @@ const Container = styled.div`
     background-color: #46464d;
     color: white;
   }
+`;
+
+const TitleWrap = styled.button`
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 50px;
+  border: 1px solid #e9ebed;
+  color: #46464d;
+`;
+
+const Title = styled.div`
+  font-size: 19px;
+  font-weight: 400;
 `;
 
 const BRAND_NAME = [

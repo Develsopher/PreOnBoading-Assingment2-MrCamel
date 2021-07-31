@@ -3,10 +3,10 @@ import styled from 'styled-components/macro';
 
 export default class BlackButton extends Component {
   render() {
-    const { randomPick, products } = this.props;
-
+    const { pickRandomProduct, products } = this.props;
+    // () => pickRandomProduct(products)
     return (
-      <Container onClick={() => randomPick(products)}>
+      <Container onClick={this.props.onDislike}>
         <img src="/images/sad.svg" alt="" />
         <Title>{this.props.children}</Title>
       </Container>
