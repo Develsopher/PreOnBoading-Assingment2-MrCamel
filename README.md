@@ -17,8 +17,11 @@ PreOnBoading-Assignment2-Mr.Camel
 ## 구현목록
 ***
 ### 요구사항 충족 여부
+
 -[x] ClassComponent 사용 (state, LifeCycle 적절히 사용)
+
 -[x] LocalStorage 채택하여 본 상품 이력관리(웹 페이지를 닫아도 이력을 계속 남기기 위해)
+
 -[x] ProductData.json(Mock데이터) axios으로 통신
 
 ### 페이지 구성 및 구현목록 설명
