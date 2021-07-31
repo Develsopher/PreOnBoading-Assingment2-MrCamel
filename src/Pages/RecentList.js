@@ -38,7 +38,7 @@ class recentList extends Component {
     return (
       <Container>
         <Header link="/">상품 보러 가기</Header>
-        <BrandFilter></BrandFilter>
+        <BrandFilter />
         <Group>
           <Check onClick={() => this.handleCheck()}>
             <img

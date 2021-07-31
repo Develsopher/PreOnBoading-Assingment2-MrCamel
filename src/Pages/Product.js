@@ -7,6 +7,7 @@ import BlackButton from 'components/button/BlackButton';
 import BlueButton from 'components/button/BlueButton';
 import axios from 'axios';
 import addRecent from 'utils/functions/addRecent';
+import updateRecent from 'utils/functions/updateRecent';
 
 class product extends Component {
   constructor() {
@@ -18,8 +19,8 @@ class product extends Component {
   }
 
   pickRandomProduct = products => {
-    const randNum = Math.floor(Math.random() * products.length + 1);
-    const product = products.find(v => v.id === randNum);
+    const randNum = Math.floor(Math.random() * products.length);
+    const product = products[randNum];
 
     this.setState({ product });
 
@@ -27,12 +28,28 @@ class product extends Component {
   };
 
   onDislike = () => {
-    this.setState(prev => ({
-      product: {
+    this.setState(prev => {
+      prev.products.splice(prev.product.id, 1, {
         ...prev.product,
         disLike: !prev.product.disLike,
+      });
+      return {
+        products: prev.products,
+      };
+    });
+
+    const recents = JSON.parse(window.localStorage.getItem('recents'));
+    const existedRecent = recents.find(
+      v => v.product.id === this.state.product.id
+    );
+
+    updateRecent({
+      ...existedRecent,
+      product: {
+        ...this.state.product,
+        disLike: !this.state.product.disLike,
       },
-    }));
+    });
   };
 
   componentDidMount() {
@@ -49,11 +66,18 @@ class product extends Component {
 
   render() {
     const { product, products } = this.state;
-    console.log(this.state.product.disLike);
     return (
       <Container>
-        <Header link="/recentlist">내가 본 상품</Header>
-        <Content product={product} />
+        <Header link="/recentlist">내가 본 상품 </Header>
+        {product.disLike ? (
+          (() => {
+            alert('관심 없음 등록된 상품입니다.');
+            this.pickRandomProduct(products);
+          })()
+        ) : (
+          <Content product={product} />
+        )}
+
         <Group>
           <BlackButton
             products={products}
@@ -88,4 +112,10 @@ const Group = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  margin-top: 15px;
+  width: 600px;
+
+  button:hover {
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+  }
 `;
