@@ -1,28 +1,29 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import Header from '../components/header/Header';
 import ItemList from '../components/item/ItemList';
 import BrandFilter from '../components/filter/BrandFilter';
+import readRecent from 'utils/functions/readRecents';
 
 class recentList extends Component {
   constructor() {
     super();
     this.state = {
-      products: [],
+      productLists: [],
       isCheck: false,
     };
   }
 
   componentDidMount() {
-    axios
-      .get('/data/ProductData.json')
-      .then(res => {
-        this.setState({ products: res.data.product_lists });
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    // axios
+    //   .get('/data/ProductData.json')
+    //   .then(res => {
+    //     this.setState({ products: res.data.product_lists });
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
+    this.setState({ productLists: readRecent() });
   }
 
   handleCheck = () => {
@@ -32,7 +33,8 @@ class recentList extends Component {
   };
 
   render() {
-    const { products } = this.state;
+    console.log('jee', this.state.productLists);
+    const { productLists, isCheck } = this.state;
     return (
       <Container>
         <Header link="/">상품 보러 가기</Header>
@@ -41,9 +43,7 @@ class recentList extends Component {
           <Check onClick={() => this.handleCheck()}>
             <img
               src={
-                this.state.isCheck === true
-                  ? '/images/checked.svg'
-                  : '/images/uncheck.svg'
+                isCheck === true ? '/images/checked.svg' : '/images/uncheck.svg'
               }
               alt="check"
             />
@@ -57,7 +57,7 @@ class recentList extends Component {
           </Select>
         </Group>
         <Line />
-        <ItemList products={products} />
+        <ItemList productLists={productLists} />
       </Container>
     );
   }

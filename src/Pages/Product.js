@@ -30,18 +30,19 @@ class product extends Component {
         this.setState({
           nowProduct: this.randomValueFromArray(this.state.products),
         });
+        addRecent(this.state.nowProduct);
       })
       .catch(err => {
         console.error(err);
       });
 
-    // addRecent(this.state.products);
+    // addRecent(this.state.nowProduct);
   }
 
   render() {
     const { nowProduct } = this.state;
     console.log(this.state.nowProduct);
-    // console.log(this.state.nowProduct.image);
+    console.log('!!!', this.state.nowProduct.id);
     return (
       <Container>
         <Header link="/recentlist">최근 본 상품</Header>

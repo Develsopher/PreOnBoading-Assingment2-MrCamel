@@ -3,28 +3,44 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BrandButton from 'components/button/BrandButton';
 import BlackButton from 'components/button/BlackButton';
+import BlueButton from 'components/button/BlueButton';
 
 export default class ItemList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      disLike: false,
+    };
+  }
+  componentDidUpdate() {}
+
   render() {
-    const { products } = this.props;
-    console.log(this.props.products);
+    const { productLists } = this.props;
     return (
       <Container>
-        {products.map(product => (
-          <Item key={product.id}>
-            <Image src={product.image} alt="상품이미지" />
-            <Information>
-              <Group>
-                <BrandButton>{product.brand}</BrandButton>
-                <BlackButton>관심 없어요</BlackButton>
-              </Group>
-              <Title>{product.title}</Title>
-              <Price>
-                <span>{product.price.toLocaleString()}</span>원
-              </Price>
-            </Information>
-          </Item>
-        ))}
+        {productLists ? (
+          productLists.map(v => (
+            <Item key={v.product.id}>
+              <Image src={v.product.image} alt="상품이미지" />
+              <Information>
+                <Group>
+                  <BrandButton>{v.product.brand}</BrandButton>
+                  {v.product.disLike ? (
+                    <BlackButton>관심 없어요</BlackButton>
+                  ) : (
+                    <BlueButton>관심 있어요</BlueButton>
+                  )}
+                </Group>
+                <Title>{v.product.title}</Title>
+                <Price>
+                  <span>{(v.product.price * 1).toLocaleString()}</span>원
+                </Price>
+              </Information>
+            </Item>
+          ))
+        ) : (
+          <Null>최근 본 상품이 없습니다.</Null>
+        )}
       </Container>
     );
   }
@@ -90,4 +106,8 @@ const Price = styled.div`
     font-size: 28px;
     font-weight: 600;
   }
+`;
+
+const Null = styled.div`
+  font-size: 20px;
 `;

@@ -6,7 +6,6 @@ class Content extends Component {
   render() {
     const { nowProduct } = this.props;
     console.log('content', this.props.nowProduct);
-    console.log('???');
     return (
       <Container>
         <Image>
