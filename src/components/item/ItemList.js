@@ -110,5 +110,7 @@ const Price = styled.div`
 `;
 
 const Null = styled.div`
+  margin-top: 250px;
   font-size: 20px;
+  color: #73737f;
 `;

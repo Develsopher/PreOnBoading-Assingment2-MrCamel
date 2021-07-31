@@ -13,6 +13,7 @@ class recentList extends Component {
       productList: [],
       searchedBrandList: [],
       isCheck: false,
+      activeTab: '',
     };
   }
 
@@ -43,15 +44,57 @@ class recentList extends Component {
     }));
   };
 
+  handleSelect = e => {
+    this.setState({ activeTab: e.target.value });
+  };
+
   render() {
+<<<<<<< HEAD
     const { productList, isCheck, searchedBrandList } = this.state;
 
+=======
+<<<<<<< HEAD
+    const { productLists, isCheck } = this.state;
+=======
+    console.log('jee', this.state.productLists);
+    console.log(this.state.activeTab);
+    const { productLists, isCheck, activeTab } = this.state;
+    const { handleCheck, handleSelect } = this;
+
+    const sortByLowerPrices = productLists.sort(
+      (a, b) => a.product.price - b.product.price
+    );
+
+    const sortByHigerPrices = productLists.sort(
+      (a, b) => b.product.price - a.product.price
+    );
+
+    const sortByLatestTime = productLists.sort(
+      (a, b) => new Date(b.inquiriedAt) - new Date(a.inquiriedAt)
+    );
+
+    const obj = {
+      1: { sortByLatestTime },
+      2: { sortByLowerPrices },
+      3: { sortByHigerPrices },
+    };
+
+    productLists.sort((a, b) => {
+      console.log('a', a.product.price);
+      console.log('b', b.product.price);
+      console.log(a.product.price - b.product.price);
+    });
+
+    console.log(sortByLowerPrices);
+
+>>>>>>> c06ae7a (Modify: 오름차순, 내림차순 기능 구현)
+>>>>>>> 8c094bf (Fix: 컨플릭트 해결)
     return (
       <Container>
         <Header link="/">상품 보러 가기</Header>
         <BrandFilter onFilter={this.onFilter} productList={productList} />
         <Group>
-          <Check onClick={() => this.handleCheck()}>
+          <Check onClick={() => handleCheck()}>
             <img
               src={
                 isCheck === true ? '/images/checked.svg' : '/images/uncheck.svg'
@@ -61,13 +104,15 @@ class recentList extends Component {
             <span>관심 없는 상품 안보기</span>
           </Check>
           <Select>
-            <select>
-              <option>최근 조회순</option>
-              <option>낮은 가격순</option>
+            <select onChange={handleSelect}>
+              <option value="1">최근 조회순</option>
+              <option value="2">낮은 가격순</option>
+              <option value="3">높은 가격순</option>
             </select>
           </Select>
         </Group>
         <Line />
+<<<<<<< HEAD
 
         <ItemList
           productList={
@@ -75,6 +120,19 @@ class recentList extends Component {
           }
         />
 
+=======
+<<<<<<< HEAD
+        {isCheck ? (
+          <ItemList
+            productLists={productLists.filter(v => v.product.disLike === false)}
+          />
+        ) : (
+          <ItemList productLists={productLists} />
+        )}
+=======
+        <ItemList productLists={obj.activeTab} />
+>>>>>>> c06ae7a (Modify: 오름차순, 내림차순 기능 구현)
+>>>>>>> 8c094bf (Fix: 컨플릭트 해결)
       </Container>
     );
   }
