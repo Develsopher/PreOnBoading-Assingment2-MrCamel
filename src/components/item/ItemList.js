@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import BrandButton from 'components/button/BrandButton';
 import BlackButton from 'components/button/BlackButton';
 import BlueButton from 'components/button/BlueButton';
+import LikeButton from 'components/button/LikeButton';
+import UnLikeButton from 'components/button/UnLikeButton';
 
 export default class ItemList extends Component {
   constructor() {
@@ -16,7 +18,6 @@ export default class ItemList extends Component {
 
   render() {
     const { productList, isCheck } = this.props;
-    console.log(productList);
     return (
       <Container>
         {productList ? (
@@ -31,9 +32,9 @@ export default class ItemList extends Component {
                         <Group>
                           <BrandButton>{v.product.brand}</BrandButton>
                           {v.product.disLike ? (
-                            <BlackButton>관심 없어요</BlackButton>
+                            <UnLikeButton>관심 없어요</UnLikeButton>
                           ) : (
-                            <BlueButton>관심 있어요</BlueButton>
+                            <LikeButton>관심 있어요</LikeButton>
                           )}
                         </Group>
                         <Title>{v.product.title}</Title>
@@ -51,9 +52,9 @@ export default class ItemList extends Component {
                       <Group>
                         <BrandButton>{v.product.brand}</BrandButton>
                         {v.product.disLike ? (
-                          <BlackButton>관심 없어요</BlackButton>
+                          <UnLikeButton>관심 없어요</UnLikeButton>
                         ) : (
-                          <BlueButton>관심 있어요</BlueButton>
+                          <LikeButton>관심 있어요</LikeButton>
                         )}
                       </Group>
                       <Title>{v.product.title}</Title>
