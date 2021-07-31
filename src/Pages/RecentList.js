@@ -4,18 +4,37 @@ import Header from '../components/header/Header';
 import ItemList from '../components/item/ItemList';
 import BrandFilter from '../components/filter/BrandFilter';
 import readRecent from 'utils/functions/readRecents';
+import readRecents from 'utils/functions/readRecents';
 
 class recentList extends Component {
   constructor() {
     super();
     this.state = {
-      productLists: [],
+      productList: [],
+      searchedBrandList: [],
       isCheck: false,
     };
   }
 
+  onFilter = data => {
+    if (!data.checked) {
+      this.setState(prev => ({
+        searchedBrandList: prev.searchedBrandList.concat(
+          prev.productList.filter(v => v.product.brand === data.name)
+        ),
+      }));
+    } else {
+      this.setState(prev => ({
+        searchedBrandList: prev.searchedBrandList.filter(
+          v => v.product.brand !== data.name
+        ),
+      }));
+    }
+  };
+
   componentDidMount() {
-    this.setState({ productLists: readRecent() });
+
+    this.setState({ productList: readRecent() });
   }
 
   handleCheck = () => {
@@ -25,11 +44,12 @@ class recentList extends Component {
   };
 
   render() {
-    const { productLists, isCheck } = this.state;
+    const { productList, isCheck, searchedBrandList } = this.state;
+
     return (
       <Container>
         <Header link="/">상품 보러 가기</Header>
-        <BrandFilter />
+        <BrandFilter onFilter={this.onFilter} productList={productList} />
         <Group>
           <Check onClick={() => this.handleCheck()}>
             <img
@@ -48,13 +68,13 @@ class recentList extends Component {
           </Select>
         </Group>
         <Line />
-        {isCheck ? (
-          <ItemList
-            productLists={productLists.filter(v => v.product.disLike === false)}
-          />
-        ) : (
-          <ItemList productLists={productLists} />
-        )}
+
+        <ItemList
+          productList={
+            searchedBrandList.length ? searchedBrandList : productList
+          }
+        />
+
       </Container>
     );
   }

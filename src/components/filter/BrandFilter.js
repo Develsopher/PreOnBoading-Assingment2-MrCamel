@@ -3,28 +3,52 @@ import styled from 'styled-components/macro';
 import BrandButton from '../button/BrandButton';
 
 export default class BrandFilter extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      checkedBrand: [],
-      allBrand: [],
+      brand: BRAND_NAME,
     };
   }
 
-  // handleSellect = (e) => {
-  //   if () {
-  //     this.setState({selectedBrand: [...selectedBrand, e.target.value]})
-  //   }
+  onCheck = (data, idx) => {
+    const { onFilter } = this.props;
 
-  //   //클릭한 브랜드들을 selectedBrand에 넣는다.
-  // }
+    this.setState(prev => {
+      prev.brand.splice(idx, 1, {
+        ...data,
+        checked: !data.checked,
+      });
+      return {
+        brand: prev.brand,
+      };
+    });
+    onFilter(data);
+  };
+
   render() {
+    const { brand } = this.state;
     return (
-      <Container onChange={this.handleChange}>
-        {BRAND_NAME.map((data, index) => (
-          <TitleWrap key={index} value={data.name}>
-            <Title>{data.name}</Title>
-          </TitleWrap>
+      <Container>
+        {brand.map((data, idx) => (
+          <>
+            {data.checked ? (
+              <TitleWrap
+                color="red"
+                key={data.name}
+                onClick={() => this.onCheck(data, idx)}
+              >
+                <Title>{data.name}</Title>
+              </TitleWrap>
+            ) : (
+              <TitleWrap
+                color="#46464d"
+                key={data.name}
+                onClick={() => this.onCheck(data, idx)}
+              >
+                <Title>{data.name}</Title>
+              </TitleWrap>
+            )}
+          </>
         ))}
       </Container>
     );
@@ -52,7 +76,7 @@ const TitleWrap = styled.button`
   background-color: white;
   border-radius: 50px;
   border: 1px solid #e9ebed;
-  color: #46464d;
+  color: ${props => props.color};
 `;
 
 const Title = styled.div`
@@ -61,9 +85,9 @@ const Title = styled.div`
 `;
 
 const BRAND_NAME = [
-  { name: '구찌' },
-  { name: '나이키' },
-  { name: '스톤아일랜드' },
-  { name: '루이비통' },
-  { name: '샤넬' },
+  { name: '구찌', checked: false },
+  { name: '나이키', checked: false },
+  { name: '스톤아일랜드', checked: false },
+  { name: '루이비통', checked: false },
+  { name: '샤넬', checked: false },
 ];

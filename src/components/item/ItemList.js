@@ -15,11 +15,12 @@ export default class ItemList extends Component {
   componentDidUpdate() {}
 
   render() {
-    const { productLists } = this.props;
+    const { productList } = this.props;
+    console.log(productList);
     return (
       <Container>
-        {productLists ? (
-          productLists.map(v => (
+        {productList ? (
+          productList.map(v => (
             <Item key={v.product.id}>
               <Image src={v.product.image} alt="상품이미지" />
               <Information>
