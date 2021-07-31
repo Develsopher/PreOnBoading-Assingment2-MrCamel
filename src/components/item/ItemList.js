@@ -2,8 +2,6 @@ import { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import BrandButton from 'components/button/BrandButton';
-import BlackButton from 'components/button/BlackButton';
-import BlueButton from 'components/button/BlueButton';
 import LikeButton from 'components/button/LikeButton';
 import UnLikeButton from 'components/button/UnLikeButton';
 
