@@ -4,26 +4,36 @@ import Header from '../components/header/Header';
 import ItemList from '../components/item/ItemList';
 import BrandFilter from '../components/filter/BrandFilter';
 import readRecent from 'utils/functions/readRecents';
+import readRecents from 'utils/functions/readRecents';
 
 class recentList extends Component {
   constructor() {
     super();
     this.state = {
-      productLists: [],
+      productList: [],
+      searchedBrandList: [],
       isCheck: false,
     };
   }
 
+  onFilter = data => {
+    if (!data.checked) {
+      this.setState(prev => ({
+        searchedBrandList: prev.searchedBrandList.concat(
+          prev.productList.filter(v => v.product.brand === data.name)
+        ),
+      }));
+    } else {
+      this.setState(prev => ({
+        searchedBrandList: prev.searchedBrandList.filter(
+          v => v.product.brand !== data.name
+        ),
+      }));
+    }
+  };
+
   componentDidMount() {
-    // axios
-    //   .get('/data/ProductData.json')
-    //   .then(res => {
-    //     this.setState({ products: res.data.product_lists });
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
-    this.setState({ productLists: readRecent() });
+    this.setState({ productList: readRecent() });
   }
 
   handleCheck = () => {
@@ -33,12 +43,11 @@ class recentList extends Component {
   };
 
   render() {
-    console.log('jee', this.state.productLists);
-    const { productLists, isCheck } = this.state;
+    const { productList, isCheck, searchedBrandList } = this.state;
     return (
       <Container>
         <Header link="/">상품 보러 가기</Header>
-        <BrandFilter />
+        <BrandFilter onFilter={this.onFilter} productList={productList} />
         <Group>
           <Check onClick={() => this.handleCheck()}>
             <img
@@ -57,7 +66,11 @@ class recentList extends Component {
           </Select>
         </Group>
         <Line />
-        <ItemList productLists={productLists} />
+        <ItemList
+          productList={
+            searchedBrandList.length ? searchedBrandList : productList
+          }
+        />
       </Container>
     );
   }
