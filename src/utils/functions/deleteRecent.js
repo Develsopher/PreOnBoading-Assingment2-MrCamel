@@ -4,10 +4,11 @@ const deleteRecents = () => {
   const TTL =
     (24 - now.getHours() - 1) * 60 * 60 +
     (60 - now.getMinutes() - 1) * 60 +
-    (60 - now.getSeconds());
+    (60 - now.getSeconds()) * 1000;
 
-  setTimeout(() => {
+  const timerId = setTimeout(() => {
     window.localStorage.clear();
+    clearTimeout(timerId);
   }, TTL);
 };
 
