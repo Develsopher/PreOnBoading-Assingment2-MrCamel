@@ -1,20 +1,16 @@
 import deleteRecents from 'utils/functions/deleteRecent';
+import updateRecent from './updateRecent';
 
 const addRecent = recent => {
-  if (!window.localStorage.getItem('recents')) {
+  const recents = JSON.parse(window.localStorage.getItem('recents'));
+
+  if (!recents) {
     window.localStorage.setItem(
       'recents',
       JSON.stringify(
         [].concat({
           id: 0,
-          product: {
-            id: recent.id,
-            title: recent.title,
-            brand: recent.brand,
-            price: recent.price,
-            image: recent.image,
-            disLike: recent.disLike,
-          },
+          product: recent,
           inquiriedAt: new Date(),
         })
       )
@@ -23,18 +19,10 @@ const addRecent = recent => {
     return;
   }
 
-  const recents = JSON.parse(window.localStorage.getItem('recents'));
-
   const existedRecent = recents.find(v => v.product.id === recent.id);
   if (existedRecent) {
     console.log(`${existedRecent.id}번 중복 발생!!`);
-    recents.splice(existedRecent.id, 1, {
-      ...existedRecent,
-      inquiriedAt: new Date(),
-    });
-
-    window.localStorage.setItem('recents', JSON.stringify(recents));
-
+    updateRecent(existedRecent);
     return;
   }
 
@@ -42,14 +30,7 @@ const addRecent = recent => {
 
   recents.push({
     id: lastId,
-    product: {
-      id: recent.id,
-      title: recent.title,
-      brand: recent.brand,
-      price: recent.price,
-      image: recent.image,
-      disLike: recent.disLike,
-    },
+    product: recent,
     inquiriedAt: new Date(),
   });
   window.localStorage.setItem('recents', JSON.stringify(recents));

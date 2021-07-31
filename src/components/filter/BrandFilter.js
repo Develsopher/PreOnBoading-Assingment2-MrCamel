@@ -32,4 +32,5 @@ const BRAND_NAME = [
   { name: '나이키' },
   { name: '스톤아일랜드' },
   { name: '루이비통' },
+  { name: '샤넬' },
 ];
