@@ -4,7 +4,6 @@ import Header from '../components/header/Header';
 import ItemList from '../components/item/ItemList';
 import BrandFilter from '../components/filter/BrandFilter';
 import readRecent from 'utils/functions/readRecents';
-import readRecents from 'utils/functions/readRecents';
 
 class recentList extends Component {
   constructor() {
@@ -34,7 +33,6 @@ class recentList extends Component {
   };
 
   componentDidMount() {
-
     this.setState({ productList: readRecent() });
   }
 
@@ -49,46 +47,27 @@ class recentList extends Component {
   };
 
   render() {
-<<<<<<< HEAD
-    const { productList, isCheck, searchedBrandList } = this.state;
-
-=======
-<<<<<<< HEAD
-    const { productLists, isCheck } = this.state;
-=======
-    console.log('jee', this.state.productLists);
-    console.log(this.state.activeTab);
-    const { productLists, isCheck, activeTab } = this.state;
+    const { productList, isCheck, searchedBrandList, activeTab } = this.state;
     const { handleCheck, handleSelect } = this;
 
-    const sortByLowerPrices = productLists.sort(
-      (a, b) => a.product.price - b.product.price
-    );
+    // const sortByLowerPrices = productList.sort(
+    //   (a, b) => a.product.price - b.product.price
+    // );
 
-    const sortByHigerPrices = productLists.sort(
-      (a, b) => b.product.price - a.product.price
-    );
+    // const sortByHigerPrices = productList.sort(
+    //   (a, b) => b.product.price - a.product.price
+    // );
 
-    const sortByLatestTime = productLists.sort(
-      (a, b) => new Date(b.inquiriedAt) - new Date(a.inquiriedAt)
-    );
+    // const sortByLatestTime = productList.sort(
+    //   (a, b) => new Date(b.inquiriedAt) - new Date(a.inquiriedAt)
+    // );
 
-    const obj = {
-      1: { sortByLatestTime },
-      2: { sortByLowerPrices },
-      3: { sortByHigerPrices },
-    };
+    // const obj = {
+    //   1: { sortByLatestTime },
+    //   2: { sortByLowerPrices },
+    //   3: { sortByHigerPrices },
+    // };
 
-    productLists.sort((a, b) => {
-      console.log('a', a.product.price);
-      console.log('b', b.product.price);
-      console.log(a.product.price - b.product.price);
-    });
-
-    console.log(sortByLowerPrices);
-
->>>>>>> c06ae7a (Modify: 오름차순, 내림차순 기능 구현)
->>>>>>> 8c094bf (Fix: 컨플릭트 해결)
     return (
       <Container>
         <Header link="/">상품 보러 가기</Header>
@@ -112,27 +91,22 @@ class recentList extends Component {
           </Select>
         </Group>
         <Line />
-<<<<<<< HEAD
-
-        <ItemList
+        {/* <ItemList
           productList={
             searchedBrandList.length ? searchedBrandList : productList
           }
-        />
-
-=======
-<<<<<<< HEAD
+        /> */}
         {isCheck ? (
           <ItemList
-            productLists={productLists.filter(v => v.product.disLike === false)}
+            productList={productList.filter(v => v.product.disLike === false)}
           />
         ) : (
-          <ItemList productLists={productLists} />
+          <ItemList
+            productList={
+              searchedBrandList.length ? searchedBrandList : productList
+            }
+          />
         )}
-=======
-        <ItemList productLists={obj.activeTab} />
->>>>>>> c06ae7a (Modify: 오름차순, 내림차순 기능 구현)
->>>>>>> 8c094bf (Fix: 컨플릭트 해결)
       </Container>
     );
   }
