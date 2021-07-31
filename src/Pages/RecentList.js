@@ -33,6 +33,7 @@ class recentList extends Component {
   };
 
   componentDidMount() {
+
     this.setState({ productList: readRecent() });
   }
 
@@ -44,6 +45,7 @@ class recentList extends Component {
 
   render() {
     const { productList, isCheck, searchedBrandList } = this.state;
+
     return (
       <Container>
         <Header link="/">상품 보러 가기</Header>
@@ -66,11 +68,13 @@ class recentList extends Component {
           </Select>
         </Group>
         <Line />
+
         <ItemList
           productList={
             searchedBrandList.length ? searchedBrandList : productList
           }
         />
+
       </Container>
     );
   }
