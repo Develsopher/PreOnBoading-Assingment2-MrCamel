@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import product from 'pages/product';
-import recentList from 'pages/recentList';
+import product from 'Pages/Product';
+import recentList from 'Pages/RecentList';
 
 function Routes() {
   return (

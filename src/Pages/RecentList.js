@@ -46,8 +46,6 @@ class recentList extends Component {
 
   handleSelect = e => {
     this.setState({ activeTab: e.target.value });
-
-    console.log(this.state.activeTab);
   };
 
   sort = func => {
