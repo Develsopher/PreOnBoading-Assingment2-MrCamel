@@ -80,7 +80,7 @@ class product extends Component {
 
         <Group>
           <BlackButton
-            products={products}
+            products={products.filter(v => v.id !== product.id)}
             pickRandomProduct={this.pickRandomProduct}
             onDislike={this.onDislike}
           >

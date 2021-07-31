@@ -46,29 +46,38 @@ class recentList extends Component {
 
   handleSelect = e => {
     this.setState({ activeTab: e.target.value });
+
+    console.log(this.state.activeTab);
   };
 
+  sort = func => {
+    this.setState(prev => {
+      return {
+        productList: prev.productList.sort(func),
+        searchedBrandList: prev.searchedBrandList.sort(func),
+      };
+    });
+  };
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.activeTab !== this.state.activeTab) {
+      if (this.state.activeTab === '1') {
+        this.sort((a, b) => new Date(b.inquiriedAt) - new Date(a.inquiriedAt));
+      }
+
+      if (this.state.activeTab === '2') {
+        this.sort((a, b) => a.product.price - b.product.price);
+      }
+
+      if (this.state.activeTab === '3') {
+        this.sort((a, b) => b.product.price - a.product.price);
+      }
+    }
+  }
+
   render() {
-    const { productList, isCheck, searchedBrandList, activeTab } = this.state;
+    const { productList, isCheck, searchedBrandList } = this.state;
     const { handleCheck, handleSelect } = this;
-
-    // const sortByLowerPrices = productList.sort(
-    //   (a, b) => a.product.price - b.product.price
-    // );
-
-    // const sortByHigerPrices = productList.sort(
-    //   (a, b) => b.product.price - a.product.price
-    // );
-
-    // const sortByLatestTime = productList.sort(
-    //   (a, b) => new Date(b.inquiriedAt) - new Date(a.inquiriedAt)
-    // );
-
-    // const obj = {
-    //   1: { sortByLatestTime },
-    //   2: { sortByLowerPrices },
-    //   3: { sortByHigerPrices },
-    // };
 
     return (
       <Container>
