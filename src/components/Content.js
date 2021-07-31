@@ -4,7 +4,12 @@ import BrandButton from './button/BrandButton';
 
 class Content extends Component {
   render() {
+<<<<<<< HEAD
     const { product } = this.props;
+=======
+    const { nowProduct } = this.props;
+
+>>>>>>> 017456f (Modify: product 페이지 css 수정:)
     return (
       <Container>
         <Image>
@@ -39,20 +44,24 @@ const Image = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 29px;
-  font-weight: 600;
+  margin-top: 4px;
+  max-width: 400px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.5;
+  word-break: keep-all;
 `;
 
 const TitleGroup = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 30px;
 `;
 
 const Price = styled.div`
   text-align: right;
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 24px;
   font-weight: 500;
   span {

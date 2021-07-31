@@ -87,4 +87,13 @@ const Group = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+<<<<<<< HEAD
+=======
+  margin-top: 15px;
+  width: 600px;
+
+  button:hover {
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+  }
+>>>>>>> 017456f (Modify: product 페이지 css 수정:)
 `;
