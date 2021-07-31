@@ -1,23 +1,30 @@
 # Team Project
 PreOnBoading-Assignment2-Mr.Camel
 
-[미스터카멜](https://user-images.githubusercontent.com/78126381/127735597-961b1209-0e13-4446-9f01-951f40a85b7a.jpeg)
+[미스터카멜](https://mrcamel.co.kr/)
 
 ## 소개
 ***
-유저들이 어떤 상품을 관심 있어 하는지, 관심 없어하는지 그리고 유저들이 본 이력을 관리하는 페이지 구성하기!
+유저들이 어떤 상품을 관심 있어 하는지, 관심 없어하는지 그리고 유저들이 본 이력을 관리하는 페이지 구성하기
 
 
 ## 요구사항
 ***
-* 유저커멘트들을 한번에 10개씩 카드화해서 나타내기
-* 스크롤을 내릴 시, 10개씩 계속해서 등장하며 무한 스크롤이 될 수 있게 만들기
+* ClassComponent 사용하여 구현하기
+* SessionStorage 또는 LocalStorage 사용해서 이력관리하기
+* 외부 API 사용하지 않고, Client의 리소스만 사용하기
 
 ## 구현목록
 ***
-1. 유저 커멘트데이터가 담긴 Data API에게 Data 요청 (axios)
-2. 무한 스크롤 구현 (addEventListener)
-3. 유저 커멘트 카드화 (css)
+### 요구사항 충족 여부
+-[x] ClassComponent 사용 (state, LifeCycle 적절히 사용)
+-[x] LocalStorage 채택하여 본 상품 이력관리(웹 페이지를 닫아도 이력을 계속 남기기 위해)
+-[x] ProductData.json(Mock데이터) axios으로 통신
+
+### 페이지 구성 및 구현목록 설명
+* Product Page
+* RecentList Page
+* utils 모듈사용
 
 ## 실행
 *** 
