@@ -15,6 +15,13 @@ export default class ItemList extends Component {
 
   render() {
     const { productList, isCheck } = this.props;
+
+    console.log(productList);
+
+    if (!productList[0]?.product.id) {
+      return <Null>찾으려는 상품이 존재하지 않습니다.</Null>;
+    }
+
     return (
       <Container>
         {productList ? (

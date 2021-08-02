@@ -32,6 +32,7 @@ export default class BrandFilter extends Component {
           <>
             {data.checked ? (
               <TitleWrap
+                style={{ display: `${!data.name && 'none'}` }}
                 color="white"
                 backgroundColor="#46464d"
                 key={data.name}
@@ -41,6 +42,7 @@ export default class BrandFilter extends Component {
               </TitleWrap>
             ) : (
               <TitleWrap
+                style={{ display: `${!data.name && 'none'}` }}
                 color="#46464d"
                 backgroundColor="white"
                 key={data.name}
@@ -91,4 +93,5 @@ const BRAND_NAME = [
   { name: '스톤아일랜드', checked: false },
   { name: '루이비통', checked: false },
   { name: '샤넬', checked: false },
+  { name: '', checked: false },
 ];
